@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Image, Text, Button, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { ScrollView, Image, Text, Button, View,  StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 
 
 export default class HomeScreen extends Component {
@@ -13,17 +13,24 @@ export default class HomeScreen extends Component {
   handleChange = (e) => {
       this.setState({
         username: e.nativeEvent.text
-      }, () => console.log(this.state));
-    }
-
-  handlePassword = (e) => {
-      this.setState({
-        password: e.nativeEvent.text
       });
     }
 
+    handlePassword = (text) => {
+        this.setState({ password: text }, () => console.log(this.state.password))
+     }
+
     dataToDisplay = () => {
       return this.state.user ? this.filterResults() : null
+  }
+    displayUser = () => {
+      if(this.state.username  === '' && this.state.password === '') {
+        this.props.navigation.navigate('Home')
+      } else {
+          this.props.navigation.navigate('Logged', {
+             subscriber: this.dataToDisplay()
+          })
+      }
   }
 
     static navigationOptions = {
@@ -42,7 +49,7 @@ export default class HomeScreen extends Component {
     .then(r=>r.json())
     .then(json => this.setState({
       user: json
-    }, () => console.log(this.state))).catch((error) => {
+    })).catch((error) => {
       console.log(error);
     });
   }
@@ -58,29 +65,33 @@ export default class HomeScreen extends Component {
         <Text style={styles.getStartedText}>Email: </Text>
 
           <TextInput
+            clearButtonMode="always"
+            keyboardType='email-address'
            style={{width: 250, height: 50, marginBottom:15, borderBottomWidth: 0.5, borderBottomColor: "red"}}
            placeholder="Email goes here"
            onChange={this.handleChange}
+
          />
 
         <Text style={styles.getStartedText}>Password: </Text>
 
          <TextInput
+             clearButtonMode="always"
+             textContentType='password'
+             secureTextEntry={true}
           style={{width: 250, height: 50, marginBottom:15, borderBottomWidth: 0.5, borderBottomColor: "red"}}
           placeholder="Password goes here"
-           onChange={this.handlePassword}
+          onChangeText = {this.handlePassword}
         />
 
+          <TouchableOpacity
+           style={styles.button}
+           onPress={() => this.displayUser()}
+         >
+           <Text style={{color: 'white', fontSize: 18}}> Login </Text>
+         </TouchableOpacity>
 
-           <TouchableOpacity
 
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate('Logged', {
-             subscriber: this.dataToDisplay()
-          })}
-        >
-          <Text style={{color: 'white', fontSize: 18}}> Login </Text>
-        </TouchableOpacity>
         <Text style={styles.getStartedAccount}>Don't have an account yet? </Text>
 
 

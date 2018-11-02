@@ -12,6 +12,7 @@ import { List, ListItem, Tile, Avatar} from "react-native-elements";
  }
 
  static navigationOptions = {
+      title: 'Products',
  headerStyle: {
    backgroundColor: '#d46363',
    borderBottomWidth: 0,
@@ -31,9 +32,6 @@ import { List, ListItem, Tile, Avatar} from "react-native-elements";
     }
     return (
       <ScrollView style={styles.main}>
-        <View  style={styles.container}>
-          <Text style={styles.header}>Products</Text>
-        </View>
         {
           this.props.products.map((image, i) => (
             <View   key={i}>
@@ -42,13 +40,13 @@ import { List, ListItem, Tile, Avatar} from "react-native-elements";
               key={i}
               imageSrc={{uri:image.image_url}}
               title={image.name}
-              contentContainerStyle={{ height: 80,  alignSelf:'center' }}
-              containerStyle={{height:350, width:340, alignSelf: 'center'}}
+              contentContainerStyle={{ height: 80,  alignSelf:'center', marginBottom:10 }}
+              containerStyle={{height:350, width:320, alignSelf: 'center', marginTop: 12}}
               >
               <View
               style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}
               >
-              <Text>{image.kind}</Text>
+              <Text >{image.kind}</Text>
 
               </View>
               </Tile>
