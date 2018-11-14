@@ -1,7 +1,7 @@
 export function fetchProducts() {
   return dispatch => {
     dispatch(fetchProductsBegin())
-    return fetch('http://192.168.1.4:3000/api/v1/products')
+    return fetch('https://befresh-api.herokuapp.com/api/v1/products')
       .then(res => res.json())
       .then(json => {
          setInterval(() => {

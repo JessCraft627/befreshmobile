@@ -4,27 +4,26 @@ import { connect } from 'react-redux'
 import { fetchProducts } from "../src/actions/index";
 import { List, ListItem, Tile, Avatar} from "react-native-elements";
 
- class ProductsScreen extends React.Component {
+class ProductsScreen extends React.Component {
 
 
-   componentDidMount() {
+  componentDidMount() {
    this.props.dispatch(fetchProducts())
- }
+  }
 
  static navigationOptions = {
       title: 'Products',
- headerStyle: {
-   backgroundColor: '#d46363',
-   borderBottomWidth: 0,
- },
-  headerTintColor: 'white',
-};
+      headerStyle: {
+      backgroundColor: '#d46363',
+      borderBottomWidth: 0,
+    },
+      headerTintColor: 'white',
+  };
 
 
    state = {
      selectedProduct: []
    }
-
 
   render() {
     if (this.props.loading) {
@@ -34,27 +33,24 @@ import { List, ListItem, Tile, Avatar} from "react-native-elements";
       <ScrollView style={styles.main}>
         {
           this.props.products.map((image, i) => (
-            <View   key={i}>
-              key={i}
+            <View key={i}>
+
             <Tile
-              key={i}
               imageSrc={{uri:image.image_url}}
               title={image.name}
               contentContainerStyle={{ height: 80,  alignSelf:'center', marginBottom:10 }}
-              containerStyle={{height:350, width:320, alignSelf: 'center', marginTop: 12}}
+              containerStyle={{height:350, width:360, alignSelf: 'center', marginTop: 12}}
               >
               <View
               style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}
               >
               <Text >{image.kind}</Text>
-
               </View>
               </Tile>
             </View>
           ))
         }
       </ScrollView>
-
     );
   }
 }
@@ -63,8 +59,6 @@ const mapStateToProps = state => ({
     products: state.items,
     loading: state.loading
   });
-
-
 
 const styles = StyleSheet.create({
   main: {
@@ -88,6 +82,5 @@ const styles = StyleSheet.create({
       fontSize: 22
   }
 });
-
 
 export default connect(mapStateToProps)(ProductsScreen);

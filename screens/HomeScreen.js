@@ -10,14 +10,14 @@ export default class HomeScreen extends Component {
     user: []
   }
 
-  handleChange = (e) => {
+    handleChange = (e) => {
       this.setState({
         username: e.nativeEvent.text
       });
     }
 
     handlePassword = (text) => {
-        this.setState({ password: text }, () => console.log(this.state.password))
+        this.setState({ password: text })
      }
 
     dataToDisplay = () => {
@@ -40,12 +40,11 @@ export default class HomeScreen extends Component {
     }
   };
 
-
   filterResults = () => {
   return this.state.user.filter(users => users.email.toLowerCase().includes(this.state.username.toLowerCase()))}
 
   componentDidMount = () => {
-    fetch('http://192.168.1.4:3000/api/v1/users')
+    fetch('https://befresh-api.herokuapp.com/api/v1/users')
     .then(r=>r.json())
     .then(json => this.setState({
       user: json
@@ -67,23 +66,20 @@ export default class HomeScreen extends Component {
           <TextInput
             clearButtonMode="always"
             keyboardType='email-address'
-           style={{width: 250, height: 50, marginBottom:15, borderBottomWidth: 0.5, borderBottomColor: "red"}}
-           placeholder="Email goes here"
-           onChange={this.handleChange}
-
+            style={{width: 250, height: 50, marginBottom:15, borderBottomWidth: 0.5, borderBottomColor: "red"}}
+            placeholder="Email goes here"
+            onChange={this.handleChange}
          />
 
         <Text style={styles.getStartedText}>Password: </Text>
-
          <TextInput
-             clearButtonMode="always"
-             textContentType='password'
-             secureTextEntry={true}
-          style={{width: 250, height: 50, marginBottom:15, borderBottomWidth: 0.5, borderBottomColor: "red"}}
-          placeholder="Password goes here"
-          onChangeText = {this.handlePassword}
+           clearButtonMode="always"
+           textContentType='password'
+           secureTextEntry={true}
+           style={{width: 250, height: 50, marginBottom:15, borderBottomWidth: 0.5, borderBottomColor: "red"}}
+           placeholder="Password goes here"
+           onChangeText = {this.handlePassword}
         />
-
           <TouchableOpacity
            style={styles.button}
            onPress={() => this.displayUser()}
@@ -91,9 +87,7 @@ export default class HomeScreen extends Component {
            <Text style={{color: 'white', fontSize: 18}}> Login </Text>
          </TouchableOpacity>
 
-
         <Text style={styles.getStartedAccount}>Don't have an account yet? </Text>
-
 
           <TouchableOpacity
          style={styles.getStartedProducts}
@@ -110,7 +104,6 @@ export default class HomeScreen extends Component {
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   main: {
@@ -147,14 +140,6 @@ const styles = StyleSheet.create({
     fontWeight: "200",
     fontSize: 16,
     paddingBottom: 5,
-  },
-  getStartedProducts: {
-    // borderRadius: 15,
-    // paddingTop: 6,
-    // paddingBottom: 6,
-    // paddingLeft: 10,
-    // paddingRight: 10,
-    // backgroundColor:'#eb7171'
   },
   imageRasp:{
     width: 443,
