@@ -7,10 +7,10 @@ export default class LoggedScreen extends React.Component {
   static navigationOptions = {
      title: 'BeFresh.',
      headerStyle: {
-    backgroundColor: '#d46363',
-    borderBottomWidth: 0,
+     backgroundColor: '#d46363',
+     borderBottomWidth: 0,
   },
-       headerTintColor: 'white',
+     headerTintColor: 'white',
     };
 
     state = {
@@ -27,7 +27,6 @@ export default class LoggedScreen extends React.Component {
 
 
   render() {
-    console.log(this.props.navigation.getParam('subscriber'))
     const { navigation } = this.props;
     const subscriber = navigation.getParam('subscriber', 'NO-ID');
     if (this.props.navigation.getParam('subscriber').length === 0) {
@@ -41,7 +40,7 @@ export default class LoggedScreen extends React.Component {
 
           <ImageBackground source={require('../assets/images/b.jpg')} style={{width: 335, height: 441, alignSelf: 'center', marginTop:15}}>
             <Text style={styles.box}> Your next box  </Text>
-            <Text style={styles.boxes}> Arriving November 1st  </Text>
+            <Text style={styles.boxes}> Arriving November 29th  </Text>
           </ImageBackground>
 
           <ImageBackground source={require('../assets/images/s.jpg')} style={{width: 335, height: 441, alignSelf: 'center', marginTop:15, marginBottom:30}}>
