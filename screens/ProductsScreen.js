@@ -6,6 +6,9 @@ import { List, ListItem, Tile, Avatar} from "react-native-elements";
 
 class ProductsScreen extends React.Component {
 
+  state = {
+    selectedProduct: []
+  }
 
   componentDidMount() {
    this.props.dispatch(fetchProducts())
@@ -20,21 +23,15 @@ class ProductsScreen extends React.Component {
       headerTintColor: 'white',
   };
 
-
-   state = {
-     selectedProduct: []
-   }
-
   render() {
     if (this.props.loading) {
-      return <View>   <Text style={styles.loader}>Prepping... Juicing... Pouring...</Text> </View>
+      return <View> <Text style={styles.loader}>Prepping... Juicing... Pouring...</Text> </View>
     }
     return (
       <ScrollView style={styles.main}>
         {
           this.props.products.map((image, i) => (
             <View key={i}>
-
             <Tile
               imageSrc={{uri:image.image_url}}
               title={image.name}
@@ -44,7 +41,12 @@ class ProductsScreen extends React.Component {
               <View
               style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}
               >
-              <Text >{image.kind}</Text>
+              <TouchableOpacity
+                onPress={() =>  this.props.navigation.navigate('Product', {
+                  produ: image.id
+                })}>
+                <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}> Details </Text>
+              </TouchableOpacity>
               </View>
               </Tile>
             </View>

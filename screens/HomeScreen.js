@@ -23,6 +23,7 @@ export default class HomeScreen extends Component {
     dataToDisplay = () => {
       return this.state.user ? this.filterResults() : null
   }
+
     displayUser = () => {
       if(this.state.username  === '' && this.state.password === '') {
         this.props.navigation.navigate('Home')
@@ -93,7 +94,7 @@ export default class HomeScreen extends Component {
          style={styles.getStartedProducts}
          onPress={() => this.props.navigation.navigate('Products')}
          >
-         <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}> Explore Products </Text>
+            <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}> Explore Products </Text>
            </TouchableOpacity>
 
         <Text style={styles.getStartedText}> </Text>
