@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeScreen from './screens/HomeScreen';
 import ProductsScreen from './screens/ProductsScreen';
+import ProductScreen from './screens/ProductScreen';
 import LoggedScreen from './screens/LoggedScreen';
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
@@ -15,7 +16,8 @@ const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     Products: ProductsScreen,
-    Logged: LoggedScreen
+    Logged: LoggedScreen,
+    Product: ProductScreen
   },
   {
     initialRouteName: 'Home',
@@ -28,7 +30,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <React.Fragment>
           <RootStack />;
-        </React.Fragment>  
+        </React.Fragment>
       </Provider>
     );
   }

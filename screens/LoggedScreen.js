@@ -9,7 +9,7 @@ export default class LoggedScreen extends React.Component {
      headerStyle: {
      backgroundColor: '#d46363',
      borderBottomWidth: 0,
-  },
+    },
      headerTintColor: 'white',
     };
 
@@ -20,11 +20,6 @@ export default class LoggedScreen extends React.Component {
     handleOpen = () => {
      this.setState({ clicked: !this.state.clicked });
     };
-
-
-
-
-
 
   render() {
     const { navigation } = this.props;
@@ -65,8 +60,6 @@ export default class LoggedScreen extends React.Component {
            </TouchableOpacity>
           </ImageBackground>
 
-
-
           <View style={styles.itemContainer}>
                 <Text style={styles.item}>Account Details</Text>
                 <Text style={styles.details}>Name: {subscriber[0].name}</Text>
@@ -83,12 +76,10 @@ export default class LoggedScreen extends React.Component {
          <Text style={{color: 'white', fontSize: 18, alignSelf: 'center'}}> Log out</Text>
        </TouchableOpacity>
            <Text style={styles.item}></Text>
-
       </ScrollView>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   main: {
